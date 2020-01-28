@@ -40,7 +40,7 @@
         </section>
 
         <section>
-          <h4>🏠 Top Down - App Design</h4>
+          <h3>🏠 Top Down - App Design</h3>
           <ul>
             <li>Common in Web Development</li>
             <li>You get design, wireframe or some framework theme</li>
@@ -50,19 +50,19 @@
         </section>
 
         <section>
-          <h4>🏠 Top Down - App Design</h4>
+          <h3>🏠 Top Down - App Design</h3>
           <ul>
             <li>header, footer, body, sections of body, ...</li>
-            <li>Focus on bigger picture</li>
-            <li>Leads to less attention to detail</li>
-            <li>Less precise estimations</li>
-            <li>Often leads to tight coupling</li>
+            <li class="fragment">Focus on bigger picture</li>
+            <li class="fragment">Leads to less attention to detail</li>
+            <li class="fragment">Less precise estimations</li>
+            <li class="fragment">Often leads to tight coupling</li>
+            <img class="fragment" src="img/tight-coupling.png" alt="tight coupling" />
           </ul>
-          <img src="img/tight-coupling.png" alt="tight coupling" />
         </section>
 
         <section>
-          <h4>🧱 Bottom Up - App Design</h4>
+          <h3>🧱 Bottom Up - App Design</h3>
           <ul>
             <li>Opposite approach</li>
             <li>Think first of small and <b>reusable</b> components of app</li>
@@ -71,7 +71,7 @@
         </section>
 
         <section>
-          <h4>🧱 Bottom Up - App Design</h4>
+          <h3>🧱 Bottom Up - App Design</h3>
           <ul>
             <li>Not only visual components, those can be viewed as components too:
               <ul>
@@ -83,18 +83,95 @@
         </section>
 
         <section>
-          <h4>🧱 Bottom Up - App Design</h4>
+          <h3>🧱 Bottom Up - App Design</h3>
           <ul>
             <li>Logistic & planning view - how many of components we need to build app</li>
-            <li>Better estimations and resource planning</li>
-            <li>Loose coupling</li>
-            <img src="img/loose-coupling.png" alt="loose coupling" />
+            <li class="fragment">Better estimations and resource planning</li>
+            <li class="fragment">Loose coupling</li>
+            <img class="fragment" src="img/loose-coupling.png" alt="loose coupling" />
           </ul>
         </section>
 
         <section>
-          <h4>🏠 Top Down vs Bottom Up 🧱</h4>
+          <h3>🏠 Top Down vs Bottom Up 🧱</h3>
           <img src="img/bottom-up.jpg" alt="bottom up" />
+        </section>
+
+        <section>
+          <h3>Isolated Components</h4>
+          <p>When you design UI component it usually has some params, in React called <b>states</b>.</p>
+          <ul>
+            <li>App as whole does not exist yet, you can't connect your component yet.</li>
+            <li class="fragment">How to see those visual states immediatelly ?</li>
+            <li class="fragment">Write some mock wrapper ?</li>
+            <li class="fragment">Will be mock reusable or thrown away when we are done ?</li>
+            <li class="fragment">How to test code ? Regression ?</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Isolated Components</h3>
+          <p>To develop and run components in isolation we opted for this structure</p>
+          <img src="img/dir-structure.png" alt="dir structure" style="height: 400px"/>
+        </section>
+
+        <section>
+          <h3>Isolated Components</h3>
+          <p>Every component has own:</p>
+          <ul>
+            <li><code>*.scss</code> style</li>
+            <li><code>*.tsx</code> file with component rendering code</li>
+            <li><code>*.story.tsx</code> - Storybook mocks for isolated run with desired states</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Isolated Components</h3>
+          <p>Optionally component can also have:</p>
+          <ul>
+            <li><code>*.container.tsx</code> - data wrapper, if component needs to observe shared Redux store</li>
+            <li><code>*.test.tsx</code> - UTs for nontrivial components</li>
+            <li><code>*.mock.tsx</code> - feed mocking data for UTs</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>🦄 Example : <code>&ltChannelNumber/&gt</code></h3>
+          <section>
+            <img src="img/channel-list.png" alt="channels" />
+          </section>
+          <section>
+            <pre><code class="language-jsx">
+export default function ChannelNumber(
+  { num = '', hasEvents = true }: IDChannelNumber
+) {
+  const hasEventClass = hasEvents ? '' : ' -dimmed';
+
+  return (
+    <div className={'channelNumber'}>
+      <span className={`channelNumber__text${hasEventClass}`}>
+        {num}
+      </span>
+    </div>
+  );
+}
+            </code></pre>
+          </section>
+          <section>
+            <pre><code class="language-jsx">
+const smallNum = { num: 1, hasEvents: true };
+const bigNum = { num: 9999 };
+const noNum = { hasEvents: true };
+const noEvents = { num: 123, hasEvents: false };
+
+storiesOf('ChannelNumber', module)
+  .addDecorator((story) => <div style={{ padding: '3rem' }}>{story()}</div>)
+  .add('Small number', () => <ChannelNumber {...smallNum}/></ChannelNumber>)
+  .add('Big number', () => <ChannelNumber {...bigNum}></ChannelNumber>)
+  .add('No number', () => <ChannelNumber {...noNum}></ChannelNumber>)
+  .add('No events', () => <ChannelNumber {...noEvents}></ChannelNumber>);
+            </code></pre>
+          </section>
         </section>
 
         <section>
