@@ -1,0 +1,42 @@
+.ness {
+  position: absolute;
+  width: 100%;
+  background-color: #0084c4;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 18px;
+  color: #fff;
+  padding: 7px;
+}
+
+.ness img {
+  height: 20px;
+  float: left;
+}
+
+.ness span {
+  display: inline-block;
+  line-height: 26px;
+  margin: 0 15px;
+}
+
+.ness .topic {
+  font-weight: bold;
+  float: left;
+  text-transform: uppercase;
+}
+
+.ness .subtopic {
+  float: right;
+}
+
+#geeky-logo {
+  border: 0;
+  width: 30%;
+  padding: 16px;
+  margin: 0;
+  background-color: #fff;
+}
