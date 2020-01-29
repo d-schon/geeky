@@ -53,10 +53,10 @@
           <h3>🏠 Top Down - App Design</h3>
           <ul>
             <li>header, footer, body, sections of body, ...</li>
-            <li class="fragment">Focus on bigger picture</li>
-            <li class="fragment">Leads to less attention to detail</li>
-            <li class="fragment">Less precise estimations</li>
-            <li class="fragment">Often leads to tight coupling</li>
+            <li class="fragment">🌎 Focus on bigger picture</li>
+            <li class="fragment">😴 Leads to less attention to <b>detail</b></li>
+            <li class="fragment">🤷‍♂️ Less precise <b>estimations</b></li>
+            <li class="fragment">🔒 Often leads to <b>tight coupling</b></li>
             <img class="fragment" src="img/tight-coupling.png" alt="tight coupling" />
           </ul>
         </section>
@@ -85,9 +85,9 @@
         <section>
           <h3>🧱 Bottom Up - App Design</h3>
           <ul>
-            <li>Logistic & planning view - how many of components we need to build app</li>
-            <li class="fragment">Better estimations and resource planning</li>
-            <li class="fragment">Loose coupling</li>
+            <li>🏗 <b>Planning view</b> - how many of components we need to build app</li>
+            <li class="fragment">⏱ <b>Logistic view</b> - better estimations and resource planning</li>
+            <li class="fragment">🍒 Loose coupling</li>
             <img class="fragment" src="img/loose-coupling.png" alt="loose coupling" />
           </ul>
         </section>
@@ -99,7 +99,7 @@
 
         <section>
           <h3>Isolated Components</h4>
-          <p>When you design UI component it usually has some params, in React called <b>states</b>.</p>
+          <p>When you design UI component it usually has some <b>states</b>.</p>
           <ul>
             <li>App as whole does not exist yet, you can't connect your component yet.</li>
             <li class="fragment">How to see those visual states immediatelly ?</li>
@@ -119,9 +119,9 @@
           <h3>Isolated Components</h3>
           <p>Every component has own:</p>
           <ul>
-            <li><code>*.scss</code> style</li>
-            <li><code>*.tsx</code> file with component rendering code</li>
-            <li><code>*.story.tsx</code> - Storybook mocks for isolated run with desired states</li>
+            <li>🎨 <code><b>*.scss</b></code> style</li>
+            <li>⚙️ <code><b>*.tsx</b></code> file with component rendering code</li>
+            <li>📘 <code><b>*.story.tsx</b></code> - Storybook mocks for isolated run with desired states</li>
           </ul>
         </section>
 
@@ -129,18 +129,20 @@
           <h3>Isolated Components</h3>
           <p>Optionally component can also have:</p>
           <ul>
-            <li><code>*.container.tsx</code> - data wrapper, if component needs to observe shared Redux store</li>
-            <li><code>*.test.tsx</code> - UTs for nontrivial components</li>
-            <li><code>*.mock.tsx</code> - feed mocking data for UTs</li>
+            <li>🔌 <code><b>*.container.tsx</b></code> - data wrapper, if component needs to observe shared Redux store</li>
+            <li>🔨 <code><b>*.test.tsx</b></code> - UTs for nontrivial components</li>
+            <li>🤡 <code><b>*.mock.tsx</b></code> - feed mocking data for UTs</li>
           </ul>
         </section>
 
         <section>
-          <h3>🦄 Example : <code>&ltChannelNumber/&gt</code></h3>
+          <h3>🦄 Example : <code>&ltChannelNumber&gt</code></h3>
           <section>
+            <h4>Vision - Identify components in list of channels</h4>
             <img src="img/channel-list.png" alt="channels" />
           </section>
           <section>
+            <h4>ChannelNumber component</h4>
             <pre><code class="language-jsx">
 export default function ChannelNumber(
   { num = '', hasEvents = true }: IDChannelNumber
@@ -157,7 +159,18 @@ export default function ChannelNumber(
 }
             </code></pre>
           </section>
+
           <section>
+            <h4>How to run component in isolation ?</h4>
+            <ul>
+              <li>all-by-my-self 🙈🛴</li>
+              <li class="fragment"><b>React Styleguidist</b> 😳🚜 - <a href="https://react-styleguidist.js.org/">react-styleguidist.js.org</a></li>
+              <li class="fragment"><b>Storybook</b> 🤩🏎 - <a href="https://storybook.js.org/">storybook.js.org</a></li>
+            </ul>
+          </section>
+
+          <section>
+            <h4>ChannelNumber stories</h4>
             <pre><code class="language-jsx">
 const smallNum = { num: 1, hasEvents: true };
 const bigNum = { num: 9999 };
@@ -172,22 +185,31 @@ storiesOf('ChannelNumber', module)
   .add('No events', () => <ChannelNumber {...noEvents}></ChannelNumber>);
             </code></pre>
           </section>
+
+          <section>
+            <h4>Isolation run in Storybook</h4>
+            <img src="img/channelnum-stories.png" alt="ChannelNumber stories" />
+          </section>
+
+          <section>
+            <h4>Code coverage when connected to Jest</h4>
+            <img src="img/coverage.png" alt="coverage" />
+          </section>
+
+          <section>
+            <h4>Regression testing with StoryShots - HTML</h4>
+            <img src="img/regression-html.png" alt="regression html" style="height: 400px"/>
+          </section>
+
+          <section>
+            <h4>Regression testing with StoryShots - CSS</h4>
+            <img src="img/regression-css.png" alt="regression css" style="height: 400px"/>
+          </section>
         </section>
 
         <section>
-          <h4>Bla bla</h4>
-          <pre><code class="language-ts">
-  export function debounce(func: any, timeout: number) {
-    let timer: ReturnType&lt;Window['setTimeout']&gt;;
-    return (...args: any) => {
-      window.clearTimeout(timer);
-      timer = window.setTimeout(() => {
-        debug('💥 debounced');
-        func(...args);
-      }, timeout);
-    };
-  }
-          </code></pre>
+          <h3>Thank you</h3>
+          <img src="img/djkitty.gif" alt="isolated cat" style="height: 400px"/>
         </section>
 
       </div>
