@@ -1,5 +1,7 @@
 ## INTRO
-_@TODO_
+	Táto časť Geeky bude venovaná nášmu pohľadu na analýzu úlohy. Porovnáme si dve načastejšie
+	prístupy pri v'voji frontendovej aplikácie a povieme si načo je dobrá izolácia komponentov
+	v React apke.
 
 ## TOP DOWN - APP DESIGN
 
@@ -81,4 +83,87 @@ _@TODO_
 	väzba od užívateľov atď.
 
 ## ISOLATED COMPONENTS
-_@TODO_
+
+	Pod pojomom "izolovaný komponent" máme na mysli, že komponent sám o sebe je funkčný aj bez
+	pripojenia k aplikácii alebo jej reálnym dátam. Komponent má zvyčajne nejaké možné stavy.
+	Cieľom izolovaného behu komponentu je preveriť, či reaguje na dané stavy a či jeho funkčnosť
+	pre tieto rozličné stavy je správna.
+
+	To môže prinášať nasledovné situácie a otázky.
+
+### App as whole does not exist yet, you can't connect your component yet.
+	V počiatočných fázach projektu nastáva situácia, že ešte nemáme kde komponent pripojiť.
+	Na izolovaný beh budeme musieť použiť niečo iné.
+
+### How to see those visual states immediatelly ?
+	Chceme nástroj aby sme podľa možnosti vedeli hneď vidieť a otestovať všetky relevantné stavy
+	komponentu hneď ako je naprogramovaný, podľa možnosti ešte na počítači vývojára bez nutnosti
+	nejakého deploymentu.
+
+### Write some mock wrapper ?
+	Môžme si napísať nejaký ad-hoc kus kódu, ktorý pripojí komponent a vykreslí ho ?
+
+### Will be mock reusable or thrown away when we are done ?
+	Čo s tým ad-hoc kódom, bude sa dať využiť aj pre iné komponenty ? Bude využiteľný aj keď
+	komponent bude hotový ?
+
+### How to test code ? Regression ?
+	Bude ten ad-hoc kód schopný slúžiť ako test ? Bude vedieť spozorovať regresné odchýlky ak sa
+	niečo počas vývoja zmení ?
+
+### Code struture
+	V podstate ide o to aby všetky potrebné súbory komponentu boli na jednom mieste a v rámci
+	reusability boli jednoducho prenositeľné do prípadného iného projektu.
+
+	Pokec k scss, tsx a story
+	Pokec k container, test a mock
+
+## Example
+
+### Vision
+	Obrázok [] toto bola naša vízia ako pripraviť zoznam kanálov s eventami. Ako prvý
+	znovupoužiteľný komponent bol identifikovaný ChannelNumber. Je prítomný v každom kanáli,
+	je pomerne jednoduchý - jeho úlohou je len zobraziť číslo kanálu. Vizuálne stavy sú v podstate
+	dva - číslo ak má kanál eventy, a číslo ak nemá eventy.
+
+### ChannelNumber code
+	easy
+
+## HOW TO RUN COMPONENT IN ISOLATION	
+	Komonent máme hotový, poďme teda k možnostiam izolovaného behu.
+
+### all-by-my-self
+	Môžme si napísať vlastnú mini apku, ktorá použije komponent a zavoláme ho s rozličnými
+	parametrami. Emotikony hovoria asi sami za seba, že to nie je dobrý nápad a isto sa už daným
+	problémom niekto zaoberal.
+
+### React Styleguidist
+	Jeden z prvých a najkomplexnejších nástrojov. Z nášho pohľadu šlo skôr o kanón na vrabce,
+	pretože je to skór interaktívna dokumentácia ku komponentom. Jej využitie sa vyplatí až pri
+	veľkých projektoch alebo v teamoch tvoriacich komplexné riešenia na Reacte a potrebujú mať
+	knižnicu existujúcich komponentov s podrobným popisom. 
+	Ukázať web []
+
+### Storybook
+	Pre nás zlatá stredná cesta. Jednoducho integrovateľný do React projektu, rýchla laerning
+	curve, jednoduché použitie a možnosť napojenia na Jest test runner. S pomocou StoryShot
+	pluginu jednoducho realizovateľné regresné testy. Stále sa bavíme o lokálnom počítači
+	developera, žiadny deploy a v podstate bežateľné aj offline.
+
+### ChannelNumber stories code
+	easy - pozeráme na to aj testovacími očami, stavov je viac než dva. Ako zvládne vykreliť
+	veľké číslo ? Čo ak chýba číslo ? Fungujú default hodnoty ?
+
+### Isolation run in Storybook
+	easy, Ukázať spustený []
+
+### Code coverage
+	easy
+
+### Regression html aj css
+	easy
+
+
+
+
+
