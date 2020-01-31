@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>reveal.js</title>
+
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/reveal.css" />
+    <link rel="stylesheet" href="css/theme/sky.css" />
+    <link rel="stylesheet" href="css/ness.css" />
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/atom-one-light.css" />
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+  </head>
+  <body>
+    <div class="ness">
+      <img src="img/ness.svg" alt="Ness"/>
+      <span class="topic">Geeky Friday - Event Watcher Rebuild</span>
+      <span class="subtopic">Testing without testers</span class="subtopic">
+    </div>
+    <div class="reveal">
+      <div class="slides">
+
+        <section>
+          <h3>Testing without testers</h3>
+          <h4>Screenshot regression tests</h4>
+          <img id="geeky-logo" src="img/geekyFridayLogo.png" alt="👨🏻‍💻" />
+          <p>Lubomir Lenard</p>
+        </section>
+
+
+        <section>
+          <h3>Our reasons 🤔</h3>
+          <ul>
+            <li class="fragment">We had testers only for the last phase of project</li>            
+            <li class="fragment">Prevent mistakes, althoug small</li>
+            <li class="fragment">Document components to improve development</li>
+            <li class="fragment">To have visual integrity of application</li>
+          </ul>
+        </section>
+
+        <section> 
+          <h3>Used testing methods</h3>
+          <ul>
+            <li class="fragment">Unit tests</li>
+            <li class="fragment">Snapshot tests</li>
+            <li class="fragment">Screenshot tests</li>
+          </ul>
+        </section>
+
+        <section>
+          <section>
+            <h4>Pay attention to details</h4>
+            <img src="./img/lubo-event-card-xl-visualtest.jpg" alt="event card xxl" style="border:0px;">
+          </section>
+          <section>
+            <h4>Real difference</h4>
+            <img src="./img/lubo-event-card-xl-visualtest-diff.jpg" alt="event card xxl diff" style="border:0px;">
+            <ul>
+              <li class="fragment">Football  icon is rotated by 180 degrees</li>
+              <li class="fragment">Instead of Roboto font is used Times New Roman</li>
+              <li class="fragment">Border radius is bigger</li>
+            </ul>
+          </section>
+          <section>
+            <h4>Good luck / Bad luck</h4>
+            <img src="./img/lubo-event-card-sport-icon-horse-racing-visualtest-diff.jpg" alt="event card xxl diff" style="border:0px;">
+            <ul>
+              <li class="fragment">Good luck is on left side</li>
+              <li class="fragment">Bad luck is on right side</li>
+              <li class="fragment">It is important for british customers</li>
+            </ul>
+          </section>
+        </section>
+
+        <section>
+          <h4>Configuration for screenshot test</h4>
+          <pre><code class="language-ts">
+  import * as puppeteer from 'puppeteer';
+  declare var page: puppeteer.Page;
+  const selector = '.toastContainer';
+  const wait = 2000; // 2 seconds
+  
+  describe(`${selector}-default`, () => {
+    it('visually looks correct', async () => {
+      // APIs from jest-puppeteer
+      await page.setViewport({
+        height: 800,
+        width: 1280
+      });
+      await page.goto('http://localhost:9009/iframe.html?path=/story/toasts--default');
+      await page.waitForSelector(selector);
+      await page.waitFor(wait);
+  
+      const image = await page.screenshot();
+  
+      // API from jest-image-snapshot
+      expect(image).toMatchImageSnapshot({
+        customSnapshotsDir: 'test/__image_snapshots__'
+      });
+    }, 10000);
+  });
+            
+          </code></pre>
+        </section>
+
+        <section>
+          <h3>Links</h3>
+          <ul>
+            <li>Jest <a href="https://jestjs.io/">https://jestjs.io/</a></li>
+            <li>Jest-image-snapshot <a href="https://www.npmjs.com/package/jest-image-snapshot">https://www.npmjs.com/package/jest-image-snapshot</a></li>
+            <li>Puppeteer <a href="https://github.com/puppeteer/puppeteer">https://github.com/puppeteer/puppeteer</a></li>
+            <li>Puppeteer playground <a href="https://puppeteersandbox.com/">https://puppeteersandbox.com/</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <H2>Thank you! </H2>
+          👍
+        </section>
+
+      </div>
+    </div>
+
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+        hash: true,
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/highlight/highlight.js' },
+          { src: 'plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+  </body>
+</html>
