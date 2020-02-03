@@ -91,35 +91,47 @@
         </section>
 
         <section>
-          <h4>Configuration for screenshot test</h4>
-          <pre><code class="language-ts">
-  import * as puppeteer from 'puppeteer';
-  declare var page: puppeteer.Page;
-  const selector = '.toastContainer';
-  const wait = 2000; // 2 seconds
-  
-  describe(`${selector}-default`, () => {
-    it('visually looks correct', async () => {
-      // APIs from jest-puppeteer
-      await page.setViewport({
-        height: 800,
-        width: 1280
-      });
-      await page.goto('http://localhost:9009/iframe.html?path=/story/toasts--default');
-      await page.waitForSelector(selector);
-      await page.waitFor(wait);
-  
-      const image = await page.screenshot();
-  
-      // API from jest-image-snapshot
-      expect(image).toMatchImageSnapshot({
-        customSnapshotsDir: 'test/__image_snapshots__'
-      });
-    }, 10000);
-  });
-            
-          </code></pre>
+          <section>
+            <h4>Configuration for screenshot test</h4>
+            <pre><code class="language-ts">
+    import * as puppeteer from 'puppeteer';
+    declare var page: puppeteer.Page;
+    const selector = '.toastContainer';
+    const wait = 2000; // 2 seconds
+    
+    describe(`${selector}-default`, () => {
+      it('visually looks correct', async () => {
+        // APIs from jest-puppeteer
+        await page.setViewport({
+          height: 800,
+          width: 1280
+        });
+        await page.goto('http://localhost:9009/iframe.html?path=/story/toasts--default');
+        await page.waitForSelector(selector);
+        await page.waitFor(wait);
+    
+        const image = await page.screenshot();
+    
+        // API from jest-image-snapshot
+        expect(image).toMatchImageSnapshot({
+          customSnapshotsDir: 'test/__image_snapshots__'
+        });
+      }, 10000);
+    });
+              
+            </code></pre>
+          </section>
+
+          <section>
+            <h4>Screenshot test duration ⏱</h4>
+            <ul>
+              <li class="fragment">36 of 41 components were visually tested</li>
+              <li class="fragment">Every test contains different options for component</li>
+              <li class="fragment">Screenshot tests took approx. 2 minutes</li>
+            </ul>
+          </section>
         </section>
+        
 
         <section>
           <h3>Links</h3>
