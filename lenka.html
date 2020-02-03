@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>reveal.js</title>
+
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/reveal.css" />
+    <link rel="stylesheet" href="css/theme/sky.css" />
+    <link rel="stylesheet" href="css/ness.css" />
+    <link rel="stylesheet" href="css/lenka.css" />
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/atom-one-light.css" />
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+  </head>
+  <body>
+    <div class="ness">
+      <img src="img/ness.svg" alt="Ness"/>
+      <span class="topic">Geeky Friday - Event Watcher Rebuild</span>
+      <span class="subtopic">Theming on-the-fly</span class="subtopic">
+    </div>
+    <div class="reveal">
+      <div class="slides">
+
+        <section>
+          <h2>Theming on-the-fly</h2>
+          <h4>CSS custom properties</h4>
+          <img id="geeky-logo" src="img/geekyFridayLogo.png" alt="👨🏻‍💻" />
+          <p>Lenka Stanekova</p>
+        </section>
+
+        <section>
+          <section>
+            <h4>Declaration</h4>
+            <pre><code class="language-css">
+              :root {
+                --my-var: #000;
+              }
+            </code></pre>
+            <h4>Usage</h4>
+            <pre><code class="language-css">
+              div {
+                color: var(--my-var, #000);
+              }
+            </code></pre>
+          </section>
+          <!--<section>
+            <pre><code class="language-css">
+              :root {
+                --font-size: 12px;
+
+                font-size-xl: calc(var(--font-size) * 2);
+              }
+            </code></pre>
+            <pre class="fragment"><code class="language-css">
+              div {
+                font-size: var(--font-size)px; ❌
+                /* output: 12 px */ 
+                font-size: calc(var(--font-size) * 1px); ✅
+                /* output: 12px */
+              }
+            </code></pre>
+          </section>
+          <section>
+            <h4>HTML</h4>
+            <pre><code class="language-html">
+              <p style="color: var(--text-color)">
+                Lorem ipsum…
+              </p>
+            </code></pre>
+            <h4>JavaScript</h4>
+            <pre><code class="language-js">
+        element.style.getPropertyValue("--text-color");
+        element.style.setProperty('--text-color', newColor);
+            </code></pre>
+          </section>
+        </section>-->
+          <section>
+            <h4>Advantages of CSS variables</h4>
+            <ul>
+              <li>Native ⇾ preprocessor not needed</li>
+              <li class="fragment">
+                <div>Dynamic ⇾ redefined with JS, in media queries</div>
+                <pre><code class="language-css">
+          html {
+            --font-size: 12px;
+          }
+
+          @media (min-width: 600px) {
+            html {
+              --font-size: 24px;
+            }
+          }
+                </code></pre>
+              </li>
+            </ul>
+          </section>
+          <section>
+            <ul>
+              <li>They Cascade ⇾ can be scoped to particular elements, or classes on elements</li>
+            </ul>
+            <pre><code class="language-css">
+      html {
+        --bg-color: white;
+      }
+
+      body {
+        background-color: var(--bg-color);
+      }
+
+      .dark {
+        background-color: black;
+      }
+            </code></pre>
+          </section>
+          <section>
+            <ul>
+              <li>They are aware of DOM's structure</li>
+            </ul>
+            <pre><code class="language-html">
+    <div class="default highlighted">
+      tralala
+    </div>
+            </code></pre>
+            <pre><code class="language-css">
+    .highlighted {
+      --highlighted-size: 30px;
+    }
+
+    .default {
+      --default-size: 10px;
+
+      font-size: var(--highlighted-size), var(--default-size);
+    }
+            </code></pre>
+          </section>
+          <section>
+            <h4>HTML</h4>
+            <pre><code class="language-html">
+      <p style="color: var(--text-color)">
+        Lorem ipsum…
+      </p>
+            </code></pre>
+            <h4>JavaScript</h4>
+            <pre><code class="language-js">
+      element.style.getPropertyValue("--text-color");
+      element.style.setProperty('--text-color', newColor);
+            </code></pre>
+          </section>
+          <section>
+            <h4>Support</h4>
+            <pre><code class="language-css">
+      @supports ((--text-color: #000)) {
+        /* supported */
+      }
+
+      @supports (not(--text-color: #000)) {
+        /* not supported */
+      }
+            </code></pre>
+            <pre><code class="language-js">
+      window.CSS.supports('--text-color', #000);
+            </code></pre>
+          </section>
+        </section>
+        <section style="position: relative">
+          <h4>Setting up theme</h4>
+          <pre><code class="language-css">
+    html {
+      --text-color: #000;
+      --bg-color: #fff;
+    }
+
+    html[theme='dark'] {
+      --text-color: #fff;
+      --bg-color: #000;
+    }
+          </code></pre>
+          <pre><code class="language-ts">
+    document.documentElement.setAttribute('theme', 'dark')
+          </code></pre>
+          <img src="img/bean.gif" alt="mr bean" style="position: absolute; top: 70px; right: 10px; height: 220px; transform: rotate(8deg)"/>
+        </section>
+
+        <!--<section class="example">
+          <h4>Example</h4>
+          <div>
+            <div id="light">Light</div>
+            <div id="dark">Dark</div>
+            <div id="hl">Hello Kitty</div>
+          </div>
+        </section>-->
+        <section data-background-video="vid/lenka.mov" data-background-size="contain" data-background-video-muted="true"></section>
+        <section>
+          <img data-src="img/alpaca.jpg" height="400px"/>
+          <h4>Thank you 🖐</h4>
+        </section>
+      </div>
+    </div>
+
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+        autoPlayMedia: true,
+        hash: true,
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/highlight/highlight.js' },
+          { src: 'plugin/notes/notes.js', async: true }
+        ]
+      });
+
+      const btns = document.querySelectorAll(".example div div");
+
+      btns.forEach(btn => {
+        btn.addEventListener('click', e => {
+          const theme = btn.getAttribute('id');
+
+          if(theme === 'light'){
+            document.documentElement.removeAttribute('theme');
+          }
+          else{
+            document.documentElement.setAttribute('theme', theme);
+          }
+        })
+      });
+    </script>
+  </body>
+</html>
+
