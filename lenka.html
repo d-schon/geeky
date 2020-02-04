@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/reveal.css" />
-    <link rel="stylesheet" href="css/theme/sky.css" />
+    <link rel="stylesheet" href="css/theme/serif.css" />
     <link rel="stylesheet" href="css/ness.css" />
 
     <!-- Theme used for syntax highlighting of code -->
@@ -32,11 +32,13 @@
     <div class="reveal">
       <div class="slides">
 
-        <section>
+        <section style="position: relative">
           <h2>CSS Variables</h2>
-          <h4>Theming on-the-fly</h4>
-          <img id="geeky-logo" src="img/geekyFridayLogo_girlish.png" alt="👨🏻‍💻" />
-          <p>Lenka Stanekova</p>
+          <h3>Theming on-the-fly</h3>
+          <div style="display: flex; justify-content: center; margin-top: 100px">
+            <p>Lenka Stanekova</p>
+            <img id="geeky-logo" src="img/geeky_girl.png" alt="👨🏻‍💻" style="background-color:transparent; height: 80px; width: 110px; border: none; box-shadow: none; transform: rotate(14deg); margin-top: -20px; margin-left: -20px" />
+          </div>
         </section>
 
         <section>
@@ -155,7 +157,7 @@
             </code></pre>
           </section>
         </section>
-        <section style="position: relative">
+        <section>
           <h4>Setting up theme</h4>
           <pre><code class="language-css">
     html {
