@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>reveal.js</title>
+
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/reveal.css" />
+    <link rel="stylesheet" href="css/theme/serif.css" />
+    <link rel="stylesheet" href="css/ness.css" />
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/atom-one-light.css" />
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+  </head>
+  <body>
+    <div class="ness">
+      <img src="img/ness.svg" alt="Ness"/>
+      <span class="topic">Geeky Friday - Event Watcher Rebuild</span>
+      <span class="subtopic">App Makeup</span class="subtopic">
+    </div>
+    <div class="reveal">
+      <div class="slides">
+
+        <section>
+          <h2>App Makeup</h2>
+          <h4>designing & maintaining application</h4>
+          <img id="geeky-logo" src="img/erik_1.jpeg" alt="👨🏻‍💻" />
+          <p>Erik Schwarz</p>
+        </section>
+
+        <section>
+          <h3>🏹 Weapon of choice</h3>
+          <ul>
+            <li>photoshop vs sketch vs figma vs ... 🤔</li>
+          </ul>
+          <img src="img/erik_2.jpg" style="max-width: 600px; border: 0;" alt="wireframe" />
+        </section>
+
+        <section>
+          <h3>🧙‍♂️ Figma ✨</h3>
+          <ul>
+
+            <li><a href="https://www.figma.com/" target="_blank" style="color: blue;">click me</a> ⬅️⬅️⬅️</a>
+            <li class="fragment">🌎 online tool ±</li>
+            <li class="fragment">👫👬👯‍♀️👭 working in team & link-share</li>
+            <li class="fragment">🥴 comments</li>
+            <li class="fragment">🤩 output cool loking prototype</li>
+            <li class="fragment">💡 plenty of nice features - image mask, css snippets</li>
+            <li class="fragment">💸💸💸 FREE</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>💅 Makeup 💋</h3>
+          <section>
+          <ul style="margin-top: 50px;">
+            <li>choose path 🤔 implement generic theme || come up with brand new app</li>
+            <li class="fragment">possible risk - time pressure 😬</li>
+            <li class="fragment">no mobile support 🥰</li>
+          </ul>
+          </section>
+          <section>
+            <ul style="margin-top: 50px;">
+              <li>analyse old app & eliminate relic ui elements 📚</li>
+            </ul>
+            <img src="img/old-app.png" style="max-width: 600px; border: 0;" alt="old app" />
+          </section>
+          <section>
+            <ul style="margin-top: 50px;">
+              <li>introduce new features & more modern approach of doiing things 🧸</li>
+              <li><a href="https://www.figma.com/file/281LvPNAwKRAu4ytYm9jmE/Untitled?node-id=208%3A17" target="_blank" style="color: blue;">click me</a> ⬅️⬅️⬅️</a>
+            </ul>
+            <img src="img/erik_3.png" style="max-width: 600px; border: 0;" alt="new app" />
+          </section>
+        </section>
+
+        <section>
+          <h3>🛠 Tools 📐🖇✂️</h3>
+          <ul>
+            <li class="fragment">🧸 <a href="https://coolors.co/" href="_blank" style="color:blue">coolors</a></li>
+            <li class="fragment">🧸 <a href="https://webaim.org/resources/contrastchecker/" href="_blank" style="color:blue">contrast checker</a></li>
+            <li class="fragment">🧸 <a href="https://material.io/design/color/dark-theme.html" href="_blank" style="color:blue">dark theme guidelines</a></li>
+            <li class="fragment">🧸 <a href="https://material.io/design/color/the-color-system.html#tools-for-picking-colors" href="_blank" style="color:blue">tonal value checker</a></li>
+            <li class="fragment">🧸 <a href="https://storybook.js.org/" href="_blank" style="color:blue">storybook</a></li>
+          </ul>
+        </section>
+        <section>
+          <img src="img/erik_4.jpg" style="max-width: 750px; border: 0;" alt="new app" />
+        </section>
+
+        <section>
+          <h3>⛺️ mock vs final 🏠</h3>
+          <ul>
+            <li class="fragment">discussion, testing, playing around, feedback ... 🧐</a></li>
+          </ul>
+          <img class="fragment" src="img/erik_5.jpg" style="max-width: 600px; border: 0;" alt="new app" />
+        </section>
+
+        <section>
+          <h3>Thank U ❤️</h3>
+          <img src="img/erik_6.png" style="max-width: 600px; border: 0;" alt="new app" />
+        </section>
+      </div>
+    </div>
+
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+        hash: true,
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/highlight/highlight.js' },
+          { src: 'plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+  </body>
+</html>
