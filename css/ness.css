@@ -40,3 +40,9 @@
   margin: 0;
   background-color: #fff;
 }
+
+#ninjas {
+  background: transparent;
+  border: 0px;
+  box-shadow: none;
+}

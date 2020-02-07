@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>reveal.js</title>
+
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/reveal.css" />
+    <link rel="stylesheet" href="css/theme/serif.css" />
+    <link rel="stylesheet" href="css/ness.css" />
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/atom-one-light.css" />
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+  </head>
+  <body style="background: #fff">
+    <div class="ness">
+      <img src="img/ness.svg" alt="Ness"/>
+      <span class="topic">Geeky Friday - Developing web app from bottom-up with Storybook</span>
+      <span class="subtopic">What is Storybook and how it helped us develop fast</span class="subtopic">
+    </div>
+    <div class="reveal">
+      <div class="slides">
+
+        <section>
+          <h2>Developing web app from bottom-up</h2>
+          <h4>How Storybook helped us to develop fast</h4>
+          <p>@lukasorgovan</p>
+        </section>
+
+        <section>
+          <img src="img/storymeme.jpg" style="height: 650px; border: 0;" alt="wireframe" />
+        </section>
+
+        <section>
+            <h3>Our problem</h3>
+            <img src="img/eventwatcherold.png" style="height: 500px; border: 0;" alt="wireframe" />
+          </section>
+
+        <section data-background-video="vid/storybook.mp4" data-background-size="contain" data-background-video-muted="true"></section>
+
+        <section>
+            <h3>Delightfull workflow</h3>
+            <img src="img/diagram.png" style=" border: 0;" alt="wireframe" />
+          </section>
+        <section>
+          <h3>👍 Good practices 👍</h3>
+          
+          <ul style="margin-top: 50px;">
+            <li>show each state of component ☀️ ⛅️ 🌤 🌥 🌧 🌨 🤦‍♂️</li>
+            <li class="fragment">lockdown inputs 🔐  - be deterministic</li>
+            <li class="fragment">Review components in development 🕵🏻‍♂️ 👀</li>
+          </ul>
+        
+        </section>
+
+        <section>
+            <h3>Showcase</h3>
+            <h4>👩‍💻</h4>
+        </section>
+
+        <section>
+          <h3>Thank U ❤️</h3>
+        </section>
+      </div>
+    </div>
+
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+        hash: true,
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/highlight/highlight.js' },
+          { src: 'plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+  </body>
+</html>
