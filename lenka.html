@@ -33,9 +33,10 @@
       <div class="slides">
 
         <section style="position: relative">
-          <h2>CSS Variables</h2>
-          <h3>Theming on-the-fly</h3>
-          <div style="display: flex; justify-content: center; margin-top: 100px">
+          <h2>Theming on-the-fly</h2>
+          <h3>CSS Variables</h3>
+          <img id="theme" src="img/theme.png" alt="👨🏻‍💻" width="600px" />
+          <div style="display: flex; justify-content: center; margin-left: 70px">
             <p>Lenka Stanekova</p>
             <img id="geeky-logo" src="img/geeky_girl.png" alt="👨🏻‍💻" style="background-color:transparent; height: 80px; width: 110px; border: none; box-shadow: none; transform: rotate(14deg); margin-top: -20px; margin-left: -20px" />
           </div>
@@ -43,6 +44,42 @@
 
         <section>
           <section>
+            <h4>Theming on-tle-fly❓How❓</h4>
+            <ul>
+              <li>rel=alternate
+              <pre style="width: 100%; margin-left: -2.5%"><code class="language-html">
+    <link rel="stylesheet" href="light.css" id="light">
+    <link rel="stylesheet alternate" href="dark.css"  id="dark">
+              </code></pre>
+              </li>
+              <li>disabled
+                <pre style="width: 100%; margin-left: -2.5%"><code class="language-html">
+    <link rel="stylesheet" href="light.css" id="light">
+    <link rel="stylesheet" href="dark.css"  id="dark" disabled>
+                </code></pre>
+              </li>
+            </ul>
+          </section>
+          <section>
+            <ul>
+              <li>media=none
+              <pre style="width: 100%; margin-left: -2.5%"><code class="language-html">
+    <link rel="stylesheet" href="light.css" id="light">
+    <link rel="stylesheet" href="dark.css"  id="dark" media="none">
+              </code></pre>
+              </li>
+              <li>update link url
+                <pre style="width: 100%; margin-left: -2.5%"><code class="language-js">
+    link_node.href='dark.css';
+                </code></pre>
+              </li>
+            </ul>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h3>CSS Variables</h3>
             <h4>Declaration</h4>
             <pre><code class="language-css">
               :root {
@@ -56,105 +93,16 @@
               }
             </code></pre>
           </section>
-          <!--<section>
-            <pre><code class="language-css">
-              :root {
-                --font-size: 12px;
-
-                font-size-xl: calc(var(--font-size) * 2);
-              }
-            </code></pre>
-            <pre class="fragment"><code class="language-css">
-              div {
-                font-size: var(--font-size)px; ❌
-                /* output: 12 px */ 
-                font-size: calc(var(--font-size) * 1px); ✅
-                /* output: 12px */
-              }
-            </code></pre>
-          </section>
           <section>
-            <h4>HTML</h4>
-            <pre><code class="language-html">
-              <p style="color: var(--text-color)">
-                Lorem ipsum…
-              </p>
-            </code></pre>
-            <h4>JavaScript</h4>
-            <pre><code class="language-js">
-        element.style.getPropertyValue("--text-color");
-        element.style.setProperty('--text-color', newColor);
-            </code></pre>
-          </section>
-        </section>-->
-          <section>
-            <h4>Advantages of CSS variables</h4>
+            <h4>Advantages</h4>
             <ul>
               <li><b>Native</b> ⇾ preprocessor not needed</li>
               <li class="fragment">
                 <div><b>Dynamic</b> ⇾ can be redefined with JS, in media queries</div>
-                <pre><code class="language-css">
-          html {
-            --font-size: 12px;
-          }
-
-          @media (min-width: 600px) {
-            html {
-              --font-size: 24px;
-            }
-          }
-                </code></pre>
               </li>
+              <li class="fragment">They <b>Cascade</b> ⇾ can be scoped to particular elements, or classes on elements</li>
+              <li class="fragment">They are <b>aware of DOM</b>'s structure</li>
             </ul>
-          </section>
-          <section>
-            <ul>
-              <li>They <b>Cascade</b> ⇾ can be scoped to particular elements, or classes on elements</li>
-            </ul>
-            <pre><code class="language-css">
-      html {
-        --bg-color: white;
-      }
-
-      body {
-        background-color: var(--bg-color);
-      }
-
-      .dark {
-        background-color: black;
-      }
-            </code></pre>
-          </section>
-          <section>
-            <ul>
-              <li>They are <b>aware of DOM</b>'s structure</li>
-            </ul>
-            <h4>HTML</h4>
-            <pre><code class="language-html">
-      <p style="color: var(--text-color)">
-        Lorem ipsum…
-      </p>
-            </code></pre>
-            <h4>JavaScript</h4>
-            <pre><code class="language-js">
-      element.style.getPropertyValue("--text-color");
-      element.style.setProperty('--text-color', newColor);
-            </code></pre>
-          </section>
-          <section>
-            <h4>Support</h4>
-            <pre><code class="language-css">
-      @supports ((--text-color: #000)) {
-        /* supported */
-      }
-
-      @supports (not(--text-color: #000)) {
-        /* not supported */
-      }
-            </code></pre>
-            <pre><code class="language-js">
-      window.CSS.supports('--text-color', #000);
-            </code></pre>
           </section>
         </section>
         <section>
@@ -165,7 +113,7 @@
       --bg-color: #fff;
     }
 
-    html[theme='dark'] {
+    html[theme='night'] {
       --text-color: #fff;
       --bg-color: #000;
     }
